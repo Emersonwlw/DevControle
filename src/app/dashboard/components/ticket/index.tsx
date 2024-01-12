@@ -49,12 +49,16 @@ export function TicketItem({customer, ticket}: TicketItemProps){
                     {ticket.created_at?.toLocaleDateString("pt-br")}
                 </td>
                 <td className='text-left'>
-                    <span className="bg-green-500 px-2 py-1 rounded">{ticket.status}</span>
+                    <span className={ticket.status == "ABERTO" ? "bg-green-500 px-2 py-1 rounded" : "bg-blue-500 px-2 py-1 rounded"}>
+                            {ticket.status}
+                    </span>
                 </td>
                 <td className='text-left'>
-                    <button className='mr-3' onClick={handleChangeStatus}>
-                        <FiCheckSquare size={24} color="#131313"/>
-                    </button>
+                    {ticket.status === "ABERTO" &&(
+                              <button className='mr-3' onClick={handleChangeStatus}>
+                              <FiCheckSquare size={24} color="#131313"/>
+                          </button>
+                    )}
                     <button onClick={handleOpneModal}>
                         <FiFile size={24} color="#3b82f6"/>
                     </button>
